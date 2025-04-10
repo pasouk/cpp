@@ -1,0 +1,54 @@
+Dans la fonction principale, l'objet obj accède à la fonction A::f() via son membre de données B::x avec l'instruction obj.x.f(20). L'objet obj accède à A::g() de la même manière avec l'instruction obj.x.g(). Le compilateur n'autorise pas l'instruction obj.g() car g() est une fonction membre de la classe Aet non de la classe B.
+
+Le mécanisme d'héritage vous permet d'utiliser une instruction telle que obj.g() dans l'exemple ci-dessus. Pour que cette instruction soit légale, g() doit être une fonction membre de la classe B.
+L'héritage vous permet d'inclure les noms et les définitions des membres d'une autre classe dans le cadre d'une nouvelle classe. La classe dont vous souhaitez inclure les membres dans votre nouvelle classe est appelée classe de base. Votre nouvelle classe est dérivée de la classe de base. La nouvelle classe contient un sous-objet du type de la classe de base. L'exemple suivant est identique à l'exemple précédent, à ceci près qu'il utilise le mécanisme d'héritage pour donner à la classe B l'accès aux membres de la classe A:
+
+#include <iostream>
+using namespace std;
+
+class A {
+   int data;
+public:
+   void f(int arg) { data = arg; }
+   int g() { return data; }
+};
+
+class B : public A { };
+
+int main() {
+   B obj;
+   obj.f(20);
+   cout << obj.g() << endl;
+}
+
+La classe A est une classe de base de la classe B. Les noms et les définitions des membres de la classe A sont inclus dans la définition de la classe B; la classe B hérite des membres de la classe A. La classe B est dérivée de la classe A. La classe B contient un sous-objet de type A.
+
+Vous pouvez également ajouter de nouveaux membres de données et de nouvelles fonctions de membre à la classe dérivée. Vous pouvez modifier l'implémentation des données ou des fonctions de membre existantes en remplaçant les données ou les fonctions de membre de classe de base dans la nouvelle classe dérivée.
+Vous pouvez dériver des classes à partir d'autres classes dérivées, créant ainsi un autre niveau d'héritage. L'exemple suivant illustre cette situation:
+
+struct A { };
+struct B : A { };
+struct C : B { };
+
+La classe B est une classe dérivée de A, mais également une classe de base de C. Le nombre de niveaux d'héritage n'est limité que par les ressources.
+
+Héritage multiple permet de créer une classe dérivée qui hérite des propriétés de plusieurs classes de base. Etant donné qu'une classe dérivée hérite des membres de toutes ses classes de base, des ambiguïtés peuvent se produire. Par exemple, si deux classes de base ont un membre portant le même nom, la classe dérivée ne peut pas différencier implicitement les deux membres. Notez que lorsque vous utilisez l'héritage multiple, l'accès aux noms des classes de base peut être ambigu. Pour plus d'informations, voir Héritage multiple (C++ uniquement) .
+
+Une classe de base directe est une classe de base qui apparaît directement en tant que spécificateur de base dans la déclaration de sa classe dérivée.
+Une classe de base indirecte est une classe de base qui n'apparaît pas directement dans la déclaration de la classe dérivée mais qui est disponible pour la classe dérivée via l'une de ses classes de base. Pour une classe donnée, toutes les classes de base qui ne sont pas des classes de base directes sont des classes de base indirectes. L'exemple suivant illustre des classes de base directes et indirectes:
+
+class A {
+  public:
+    int x;
+};
+class B : public A {
+  public:
+    int y;
+};
+class C : public B { };
+
+La classe B est une classe de base directe de C. La classe A est une classe de base directe de B. La classe A est une classe de base indirecte de C. (La classe C a x et y comme membres de données.)
+Les fonctions polymorphes sont des fonctions qui peuvent être appliquées à des objets de plusieurs types. En C + +, les fonctions polymorphes sont implémentées de deux manières:
+
+    Les fonctions surchargées sont liées de manière statique lors de la compilation.
+    C++ fournit des fonctions virtuelles. Une fonction virtuelle est une fonction qui peut être appelée pour un certain nombre de types définis par l'utilisateur qui sont liés par une dérivation. Les fonctions virtuelles sont liées dynamiquement lors de l'exécution. Ils sont décrits plus en détail dans Fonctions virtuelles (
