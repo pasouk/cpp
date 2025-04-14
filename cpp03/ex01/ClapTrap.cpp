@@ -1,5 +1,15 @@
 #include "ClapTrap.hpp"
 
+ClapTrap::ClapTrap(std::string str, int hp, int ep, int ad) : name(str), hitPoints(hp), energyPoints(ep), attackDamage(ad)
+{
+    std::cout << "ClapTrap constructor has been called\n";
+}
+
+ClapTrap::ClapTrap(int hp, int ep, int ad) : name("Unknown"), hitPoints(hp), energyPoints(ep), attackDamage(ad)
+{
+    std::cout << "ClapTrap constructor has been called\n";
+}
+
 ClapTrap::ClapTrap():name("Unknown"), hitPoints(10), energyPoints(10), attackDamage(0)
 {
     std::cout << "ClapTrap constructor has been called\n";
