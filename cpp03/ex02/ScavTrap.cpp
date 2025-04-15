@@ -31,20 +31,19 @@ ScavTrap::ScavTrap(const ScavTrap &other) : ClapTrap(other)
     std::cout << "ScavTrap copy constructor has been called\n";
 }
 
-ScavTrap &ScavTrap::operator=(const ScavTrap &other)
-{
-    if (this == &other)
-        ClapTrap::operator=(other);
-    gate_keeper = other.gate_keeper;
-    std::cout << "ScavTrap assignment operator called\n";
-    return *this;
-}
-
 ScavTrap::~ScavTrap()
 {
     std::cout << "ScavTrap destructor has been called\n";
 }
 
+ScavTrap &ScavTrap::operator=(const ScavTrap &other)
+{
+    if (this == &other)
+        ClapTrap::operator=(other);
+    std::cout << "ScavTrap assignment operator called\n";
+    gate_keeper = other.gate_keeper;
+    return *this;
+}
 
 void ScavTrap::attack(const std::string& target)
 {

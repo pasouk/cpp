@@ -1,5 +1,15 @@
 #include "ClapTrap.hpp"
 
+ClapTrap::ClapTrap(std::string str, int hp, int ep, int ad) : name(str), hitPoints(hp), energyPoints(ep), attackDamage(ad)
+{
+    std::cout << "ClapTrap constructor has been called\n";
+}
+
+ClapTrap::ClapTrap(int hp, int ep, int ad) : name("Unknown"), hitPoints(hp), energyPoints(ep), attackDamage(ad)
+{
+    std::cout << "ClapTrap constructor has been called\n";
+}
+
 ClapTrap::ClapTrap():name("Unknown"), hitPoints(10), energyPoints(10), attackDamage(0)
 {
     std::cout << "ClapTrap constructor has been called\n";
@@ -17,7 +27,7 @@ ClapTrap::ClapTrap(const ClapTrap &other)
     hitPoints = other.hitPoints;
     energyPoints = other.energyPoints;
     attackDamage = other.attackDamage;
-    std::cout << "ClapTrap copy constructor has been called\n";
+        std::cout << "ClapTrap copy constructor has been called\n";
 }
 
 ClapTrap::~ClapTrap()
@@ -25,23 +35,11 @@ ClapTrap::~ClapTrap()
     std::cout << "ClapTrap destructor has been called\n";
 }
 
-ClapTrap& ClapTrap::operator=(const ClapTrap& other)
-{
-    if (this != &other)
-    {
-        name = other.name;
-        hitPoints = other.hitPoints;
-        energyPoints = other.energyPoints;
-        attackDamage = other.attackDamage;
-    }
-    std::cout << "ClapTrap assignment operator called\n";
-    return *this;
-}
 
 void ClapTrap::attack(const std::string& target)
 {
-    if (energyPoints > 0 && hitPoints > 0)
-    { 
+    if (energyPoints != 0 && hitPoints != 0)
+    {
         std::cout << "ClapTrap " << name <<  " attacks " << target;   
         std::cout << ", causing " << attackDamage << " points of damage! " << std::endl;
         energyPoints --;
@@ -59,7 +57,7 @@ void ClapTrap::takeDamage(unsigned int amount)
         return;
     }
 
-    hitPoints -= static_cast<int>(amount);
+    hitPoints -= amount;
     if (hitPoints < 0)
         hitPoints = 0;
 
@@ -82,7 +80,18 @@ void ClapTrap::beRepaired(unsigned int amount)
     }
 }
 
-
+ClapTrap& ClapTrap::operator=(const ClapTrap& other)
+{
+    if (this != &other)
+    {
+        name = other.name;
+        hitPoints = other.hitPoints;
+        energyPoints = other.energyPoints;
+        attackDamage = other.attackDamage;
+    }
+    std::cout << "ClapTrap assignment operator called\n";
+    return *this;
+}
 
 std::string ClapTrap::getName()
 {
@@ -104,22 +113,22 @@ int ClapTrap::getAttackDamage()
     return attackDamage;
 }
 
-void ClapTrap::setName(std::string str)
+void ClapTrap::setName(std::string name)
 {
-    name = str;
+    name = name;
 }
 
-void ClapTrap::setHitPoints(int nb)
+void ClapTrap::setHitPoints(int hitPoints)
 {
-    hitPoints = nb;
+    hitPoints = hitPoints;
 }
 
-void ClapTrap::setEnergyPoints(int nb)
+void ClapTrap::setEnergyPoints(int energyPoints)
 {
-    energyPoints = nb;
+    energyPoints = energyPoints;
 }
 
-void ClapTrap::setAttackDamage(int nb)
+void ClapTrap::setAttackDamage(int attackDamage)
 {
-    attackDamage = nb;
+    attackDamage = attackDamage;
 }

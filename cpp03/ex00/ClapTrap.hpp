@@ -16,9 +16,9 @@ class ClapTrap
     ClapTrap(const ClapTrap &other);
     ~ClapTrap();
 
-    ClapTrap operator=(const ClapTrap &other);
+    ClapTrap &operator=(const ClapTrap &other);
 
-    std::string getname();
+    std::string getName();
     int getHitPoints();
     int getEnergyPoints();
     int getAttackDamage();

@@ -2,10 +2,10 @@
 NAME = program
 
 # Fichiers sources
-SRC = main.cpp ClapTrap.cpp ScavTrap.cpp
+SRC = main.cpp ClapTrap.cpp ScavTrap.cpp FragTrap.cpp
 
 # Fichier header
-HEADERS = ClapTrap.hpp ScavTrap.hpp
+HEADERS = ClapTrap.hpp ScavTrap.hpp FragTrap.hpp
 
 # Flags de compilation
 CXXFLAGS = -Wall -Wextra -Werror -std=c++98

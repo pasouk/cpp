@@ -27,6 +27,7 @@ ClapTrap::ClapTrap(const ClapTrap &other)
     hitPoints = other.hitPoints;
     energyPoints = other.energyPoints;
     attackDamage = other.attackDamage;
+    std::cout << "ClapTrap copy constructor has been called\n";
 }
 
 ClapTrap::~ClapTrap()
@@ -34,7 +35,18 @@ ClapTrap::~ClapTrap()
     std::cout << "ClapTrap destructor has been called\n";
 }
 
-
+ClapTrap& ClapTrap::operator=(const ClapTrap& other)
+{
+    if (this != &other)
+    {
+        name = other.name;
+        hitPoints = other.hitPoints;
+        energyPoints = other.energyPoints;
+        attackDamage = other.attackDamage;
+    }
+    std::cout << "ClapTrap assignment operator called\n";
+    return *this;
+}
 void ClapTrap::attack(const std::string& target)
 {
     if (energyPoints != 0 && hitPoints != 0)

@@ -1,11 +1,12 @@
-#include "ClapTrap.hpp"
+#include "FragTrap.hpp"
 
-
-int main() {
-    
+int main() 
+{
     //creation of a robot and printing inital values
-    ClapTrap robot("Jean-rene");
+    FragTrap robot("Jean-Luc");
     std::cout << "Initial values - Name: " << robot.getName() << ", HP: " << robot.getHitPoints() << ", Energy: " << robot.getEnergyPoints() << ", Attack Damage: " << robot.getAttackDamage() << std::endl;
+
+
 
     //robot attacks until he doesnt have hitpoints or Energypoints anymore
     while (robot.getHitPoints() > 0 && robot.getEnergyPoints() > 0) {
@@ -23,12 +24,20 @@ int main() {
 
 
     //test if we dont give a name
-    ClapTrap unknown_robot;
+    FragTrap unknown_robot;
     std::cout << "Robot without given name is called " << unknown_robot.getName() << std::endl << std::endl;
 
     //test of the copy constructor
-    ClapTrap copied_robot(robot);
+    FragTrap copied_robot(robot);
     std::cout << "Robot copied is called  " << copied_robot.getName() << std::endl << std::endl;
 
+    //gate keeper test
+    std::cout << "\n--- Calling highFiveGuys 3 times ---\n";
+    robot.highFivesGuys();
+    robot.highFivesGuys();
+    robot.highFivesGuys();
+    std::cout << std::endl << std::endl;
+
     return 0;
+
 }
