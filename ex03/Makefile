@@ -1,36 +1,32 @@
 # Nom de l'exécutable
-TARGET = human
+NAME = program
 
 # Fichiers sources
-SRC = main.cpp Weapon.cpp HumanA.cpp HumanB.cpp 
+SRC = main.cpp Bureaucrat.cpp AForm.cpp ShrubberyCreationForm.cpp PresidentialPardonForm.cpp RobotomyRequestForm.cpp Intern.cpp
 
-# Fichiers d'en-tête
-HEADERS = HumanA.hpp HumanB.hpp Weapon.hpp
+# Fichier header
+HEADERS = Bureaucrat.hpp AForm.hpp ShrubberyCreationForm.hpp PresidentialPardonForm.hpp RobotomyRequestForm.hpp Intern.hpp
 
-# Options de compilation
-CXX = g++
+# Flags de compilation
 CXXFLAGS = -Wall -Wextra -Werror -std=c++98
 
-# Fichiers objets
-OBJ = $(SRC:.cpp=.o)
+# Compilateur
+CXX = c++
 
-# Règle par défaut
-all: $(TARGET)
+# Règle par défaut pour construire l'exécutable
+all: $(NAME)
 
-# Compilation de l'exécutable
-$(TARGET): $(OBJ) $(HEADERS)
-	$(CXX) $(CXXFLAGS) $(OBJ) -o $(TARGET)
+# Création de l'exécutable
+$(NAME): $(SRC)
+	$(CXX) $(CXXFLAGS) $(SRC) -o $(NAME)
 
-# Compilation des fichiers objets
-%.o: %.cpp $(HEADERS)
-	$(CXX) $(CXXFLAGS) -c $< -o $@
-
-# Nettoyage
+# Nettoyage des fichiers objets et de l'exécutable
 clean:
-	rm -f $(OBJ)	
+	rm -f $(NAME)
 
+# Règle pour supprimer les fichiers temporaires ou objets
 fclean: clean
-	rm -f $(TARGET)
+	rm -f $(NAME)
 
-# Reconstruire tout
+# Règle pour recompiler tout
 re: fclean all
