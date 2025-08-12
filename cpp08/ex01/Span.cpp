@@ -41,18 +41,25 @@ int Span::longuestSpan()
     return std::abs(max - min);
 }
 
-
-
-int span::shortestSpan()
+int Span::shortestSpan()
 {
     if (_numbers.size() < 2)
         throw std::runtime_error("Not enough numbers to compute a span.");
 
     std::vector<int> vec_sorted = _numbers;
-    vec_sorted.sort();
-    int retVal = -1;
-    for(i = 0; i < vec_sorted.size(); i++)
+    std::sort(vec_sorted.begin(), vec_sorted.end());
+    int retVal = INT_MAX;
+    for(size_t i = 1; i < vec_sorted.size(); i++)
     {
-        if ()
+        if (vec_sorted[i] - vec_sorted[i - 1] < retVal)
+            retVal = vec_sorted[i] - vec_sorted[i - 1];
     }
+    return retVal;
+}
+
+void Span::addNumbers(std::vector<int>::iterator begin, std::vector<int>::iterator end)
+{
+    if (std::distance(begin, end) + _numbers.size() > _n)
+        throw std::runtime_error("Span is full !");
+    _numbers.insert(_numbers.end(), begin, end);
 }

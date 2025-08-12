@@ -2,6 +2,10 @@
 #define SPAN_HPP
 
 #include <iostream>
+#include <algorithm>
+#include <climits>
+#include <stdexcept>
+#include <vector>
 
 class Span
 {
@@ -16,6 +20,7 @@ class Span
         ~Span();
 
         void    addNumber(int toAdd);
+        void    addNumbers(std::vector<int>::iterator begin, std::vector<int>::iterator end);
         int     shortestSpan();
         int     longuestSpan();
 
