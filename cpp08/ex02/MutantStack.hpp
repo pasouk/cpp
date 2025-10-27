@@ -27,11 +27,11 @@ class MutantStack : public std::stack<T>
             std::cout << "Deconstuctor called" << std::endl;
         }
 
-        stack &operator=(const stack &src)
+        MutantStack &operator=(const MutantStack &src)
         {
-            if (*this != src)
-                *this = src;
-            return (*this);
+            if (this != &src)
+                stack::operator=(src);
+            return *this;
         }
 
         iterator begin()

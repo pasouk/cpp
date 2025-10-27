@@ -56,9 +56,8 @@ int main()
 
     itVector = easyfind(repeatedVector, 2);
     if (itVector != repeatedVector.end())
-        std::cout << "Found in repeated vector: " << *itVector << std::endl;
+        std::cout << "Found in repeated vector: " << *itVector << " at the index " << std::distance(repeatedVector.begin(), itVector) << std::endl;
     else
         std::cout << "Not found in repeated vector." << std::endl;
-    std::cout << std::distance(repeatedVector.begin(), itVector);
     return 0;
 }

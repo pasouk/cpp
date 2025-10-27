@@ -6,7 +6,6 @@ int main()
 {
     std::srand(static_cast<unsigned>(std::time(NULL)));
     std::cout << "span de 0\n";
-    //conteneur vide
     {
         Span z_test(0);
         try 
@@ -33,17 +32,16 @@ int main()
     }
     std::cout << std::endl << "-----------------------------------------------------" << std::endl; 
     std::cout << "Span de 5\n";
-    // petit Span avec addNumber
     {
         Span test(5);
         try 
         {
             test.addNumber(1);
-            test.addNumber(2);
-            test.addNumber(19);
-            test.addNumber(1);
             test.addNumber(6);
-            test.addNumber(10); // Doit lancer une exception
+            test.addNumber(19);
+            test.addNumber(4);
+            test.addNumber(8);
+            test.addNumber(10); // Doit throw une exception
         } 
         catch (const std::exception &e) 
         {
@@ -61,20 +59,22 @@ int main()
     }
 std::cout << std::endl << "-----------------------------------------------------" << std::endl; 
   std::cout << "Grand span : \n" << std::endl;
-    // ajout massif avec addNumbers 
+    // ajout  avec addNumbers 
     {
-        unsigned int size = 10000;
+        unsigned int size = 100;
         Span big(size);
 
         std::vector<int> vec_rand;
         for (unsigned int i = 0; i < size; ++i) 
         {
-            vec_rand.push_back(std::rand() % 1000000);
+            int nb = std::rand() % 1000;
+            vec_rand.push_back(nb);
+            //std::cout << nb << " added to random vect " << std::endl;
         }
 
         try 
         {
-            big.addNumbers(vec_rand.begin(), vec_rand.end()); // ta méthode avec itérateurs
+            big.addNumbers(vec_rand.begin(), vec_rand.end()); 
         } 
         catch (const std::exception &e) 
         {
